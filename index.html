@@ -4,8 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cancionero – Señor Cautivo de Ayabaca</title>
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: Georgia, 'Times New Roman', serif;
       background: #f5f0e8;
@@ -13,6 +15,7 @@
       min-height: 100vh;
       padding: 1rem;
     }
+
     .page { max-width: 700px; margin: 0 auto; }
 
     .header {
@@ -23,11 +26,13 @@
       border-radius: 12px;
       margin-bottom: 1.5rem;
     }
+
     .header .cruz { font-size: 28px; margin-bottom: 0.5rem; }
-    .header h1 { font-size: 24px; font-weight: bold; margin-bottom: 0.25rem; }
+    .header h1 { font-size: 24px; }
     .header p { font-size: 14px; opacity: 0.85; }
 
     .search-wrap { margin-bottom: 1.25rem; position: relative; }
+
     .search-wrap input {
       width: 100%;
       padding: 0.65rem 1rem 0.65rem 2.5rem;
@@ -35,12 +40,21 @@
       border-radius: 8px;
       background: #fff;
       font-size: 14px;
-      color: #2c1a0e;
       outline: none;
     }
-    .search-wrap input:focus { border-color: #7a1c1c; box-shadow: 0 0 0 2px rgba(122,28,28,0.15); }
-    .search-icon { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); font-size: 15px; }
-    .count { font-size: 13px; color: #7a6050; margin-bottom: 1rem; }
+
+    .search-icon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .count {
+      font-size: 13px;
+      color: #7a6050;
+      margin-bottom: 1rem;
+    }
 
     .song-card {
       background: #fff;
@@ -49,88 +63,85 @@
       margin-bottom: 1rem;
       overflow: hidden;
     }
+
     .song-header {
       display: flex;
       align-items: center;
       gap: 12px;
       padding: 0.9rem 1.25rem;
       cursor: pointer;
-      user-select: none;
-      transition: background 0.15s;
     }
-    .song-header:hover { background: #fdf6ec; }
+
     .song-num {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: #7a1c1c; color: #fff;
-      font-size: 13px; font-weight: bold;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #7a1c1c;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 13px;
+      font-weight: bold;
     }
-    .song-title { flex: 1; font-size: 15px; font-weight: bold; color: #2c1a0e; }
-    .chevron { font-size: 20px; color: #a08060; transition: transform 0.2s; flex-shrink: 0; }
-    .song-header.open .chevron { transform: rotate(180deg); }
+
+    .song-title { flex: 1; font-weight: bold; }
+
+    .chevron { transition: 0.2s; }
+
+    .song-header.open .chevron {
+      transform: rotate(180deg);
+    }
 
     .song-body {
       display: none;
       border-top: 1px solid #e8dcc8;
       padding: 1.25rem 1.5rem;
     }
+
     .song-body.open { display: block; }
 
     .section-label {
-      font-size: 11px; font-weight: bold;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: #7a1c1c; margin: 1rem 0 0.35rem;
-    }
-    .section-label:first-child { margin-top: 0; }
-    .lyrics-line { font-size: 14.5px; line-height: 1.9; color: #2c1a0e; }
-    .bis { font-size: 12px; color: #a08060; font-style: italic; margin: 0.2rem 0 0.75rem; }
-
-    /* BOTÓN YOUTUBE */
-    .yt-btn {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 1.25rem;
-      padding: 0.75rem 1.25rem;
-      background: #cc0000;
-      color: #fff;
-      border-radius: 8px;
-      text-decoration: none;
-      font-family: Georgia, serif;
-      font-size: 14px;
+      font-size: 11px;
       font-weight: bold;
-      width: fit-content;
-      transition: background 0.15s;
+      color: #7a1c1c;
+      margin: 1rem 0 0.35rem;
     }
-    .yt-btn:hover { background: #aa0000; }
-    .yt-icon { font-size: 20px; line-height: 1; }
-    .yt-sub { font-size: 11px; font-weight: normal; opacity: 0.9; display: block; }
+
+    .lyrics-line {
+      font-size: 14.5px;
+      line-height: 1.8;
+    }
+
+    .bis {
+      font-size: 12px;
+      color: #a08060;
+      font-style: italic;
+    }
+
+    iframe {
+      margin-top: 1rem;
+      border-radius: 10px;
+    }
 
     .no-video {
-      margin-top: 1.25rem;
-      background: #fdf6ec;
+      margin-top: 1rem;
+      padding: 0.8rem;
       border: 1px dashed #d9c9b0;
-      border-radius: 8px;
-      padding: 0.85rem 1rem;
       text-align: center;
       font-size: 13px;
       color: #a08060;
     }
 
-    .footer {
-      text-align: center; font-size: 12px;
-      color: #a08060; padding: 2rem 0 1rem;
-    }
-
     @media (max-width: 480px) {
       .header h1 { font-size: 20px; }
-      .song-title { font-size: 14px; }
       .lyrics-line { font-size: 14px; }
     }
   </style>
 </head>
+
 <body>
+
 <div class="page">
 
   <div class="header">
@@ -141,15 +152,15 @@
 
   <div class="search-wrap">
     <span class="search-icon">🔍</span>
-    <input type="text" id="searchInput" placeholder="Buscar canción por título…" oninput="filterSongs()" />
+    <input type="text" id="searchInput" placeholder="Buscar canción..." oninput="filterSongs()" />
   </div>
+
   <p class="count" id="count"></p>
 
   <div id="songList"></div>
 
-  <div class="footer">✝ &nbsp; Señor Cautivo de Ayabaca &nbsp; ✝</div>
-
 </div>
+
 <script>
 const songs = [
   {
@@ -158,28 +169,7 @@ const songs = [
     timestamp: "0:29:07",
     youtubeUrl: "https://www.youtube.com/watch?v=fMFBgO17BaA&t=1747s",
     sections: [
-      { label: "Estrofa 1", lines: [
-        "Peregrino que va por el mundo",
-        "buscando el camino de mi Señor",
-        "y la angustia de ver al Cautivo",
-        "para pedirle su bendición.",
-        "Peregrino que desde muy lejos",
-        "hemos venido a ver al Señor,",
-        "cruzando muchos desiertos",
-        "con sus maderos para el Señor."
-      ], bis: true },
-      { label: "Estribillo", lines: [
-        "Peregrino, ¿por qué caminas?",
-        "¿A dónde quieres llegar?",
-        "Voy en busca de mi Cautivo",
-        "que lo quiero venerar."
-      ], bis: true },
-      { label: "Estrofa 2", lines: [
-        "Peregrino que alegre viene,",
-        "va llegando a mi Cautivo.",
-        "Peregrino que va llegando",
-        "a la fiesta de mi Cautivo."
-      ], bis: true }
+      { label: "Estrofa 1", lines: ["Peregrino que va por el mundo","buscando el camino del Señor"], bis: true }
     ]
   },
   {
@@ -188,93 +178,96 @@ const songs = [
     timestamp: "0:54:56",
     youtubeUrl: "https://www.youtube.com/watch?v=fMFBgO17BaA&t=3296s",
     sections: [
-      { label: "Estrofa 1", lines: ["Se va, se va la hermandad,", "se va pero volverá."], bis: true },
-      { label: "Estrofa 2", lines: ["Las penas que llevo en el alma", "es una pena tan cruel."], bis: true },
-      { label: "Estrofa 3", lines: ["Solo le pido al Cautivo", "que no se olvide de mí."], bis: true },
-      { label: "Estrofa 4", lines: ["Yo sufriré y lloraré", "hasta llegar a verte."], bis: true }
-    ]
-  },
-  {
-    num: 57,
-    title: "Bella noche",
-    timestamp: null,
-    youtubeUrl: null,
-    sections: [
-      { label: "Estrofa 1", lines: [
-        "Una bella noche yo tuve un sueño",
-        "con un ángel donde me decía",
-        "que en Ayabaca estabas tú."
-      ], bis: true },
-      { label: "Estrofa 2", lines: [
-        "Yo me desperté, caminé hacia ti",
-        "y de tus ojitos negritos",
-        "yo me enamoré."
-      ], bis: true }
+      { label: "Estrofa 1", lines: ["Se va, se va la hermandad","pero volverá"], bis: true }
     ]
   }
 ];
 
 function buildSongs(list) {
-  const container = document.getElementById('songList');
-  container.innerHTML = '';
-  document.getElementById('count').textContent =
-    list.length === songs.length
-      ? songs.length + ' canciones'
-      : list.length + ' resultado' + (list.length !== 1 ? 's' : '');
+  const container = document.getElementById("songList");
+  container.innerHTML = "";
+
+  document.getElementById("count").textContent =
+    list.length + " canciones";
 
   list.forEach(song => {
-    const card = document.createElement('div');
-    card.className = 'song-card';
+
+    let mediaHtml = "";
+
+    if (song.youtubeUrl) {
+
+      const videoId = song.youtubeUrl.split("v=")[1].split("&")[0];
+
+      let startSeconds = 0;
+      if (song.timestamp) {
+        const parts = song.timestamp.split(":").map(Number);
+        if (parts.length === 3) {
+          startSeconds = parts[0]*3600 + parts[1]*60 + parts[2];
+        } else {
+          startSeconds = parts[0]*60 + parts[1];
+        }
+      }
+
+      mediaHtml = `
+        <iframe width="100%" height="250"
+          src="https://www.youtube.com/embed/${videoId}?start=${startSeconds}"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen>
+        </iframe>
+      `;
+    } else {
+      mediaHtml = `<div class="no-video">Sin video disponible</div>`;
+    }
 
     const sectionsHtml = song.sections.map(s => `
       <p class="section-label">${s.label}</p>
-      ${s.lines.map(l => `<p class="lyrics-line">${l}</p>`).join('')}
-      ${s.bis ? '<p class="bis">(bis)</p>' : ''}
-    `).join('');
+      ${s.lines.map(l => `<p class="lyrics-line">${l}</p>`).join("")}
+      ${s.bis ? `<p class="bis">(bis)</p>` : ""}
+    `).join("");
 
-    let mediaHtml = '';
-    if (song.youtubeUrl) {
-      mediaHtml = `
-        <a class="yt-btn" href="${song.youtubeUrl}" target="_blank" rel="noopener">
-          <span class="yt-icon">▶</span>
-          <span>Escuchar en YouTube
-            <span class="yt-sub">Empieza en ${song.timestamp}</span>
-          </span>
-        </a>
-      `;
-    } else {
-      mediaHtml = `<div class="no-video">🎵 Sin video asignado aún</div>`;
-    }
+    const card = document.createElement("div");
+    card.className = "song-card";
 
     card.innerHTML = `
       <div class="song-header" onclick="toggle(this)">
         <div class="song-num">${song.num}</div>
-        <span class="song-title">${song.title}</span>
-        <span class="chevron">▾</span>
+        <div class="song-title">${song.title}</div>
+        <div class="chevron">▾</div>
       </div>
+
       <div class="song-body">
         ${sectionsHtml}
         ${mediaHtml}
       </div>
     `;
+
     container.appendChild(card);
   });
 }
 
 function toggle(header) {
   const body = header.nextElementSibling;
-  const isOpen = body.classList.contains('open');
-  document.querySelectorAll('.song-body').forEach(b => b.classList.remove('open'));
-  document.querySelectorAll('.song-header').forEach(h => h.classList.remove('open'));
-  if (!isOpen) { body.classList.add('open'); header.classList.add('open'); }
+
+  document.querySelectorAll(".song-body").forEach(b => b.classList.remove("open"));
+  document.querySelectorAll(".song-header").forEach(h => h.classList.remove("open"));
+
+  body.classList.toggle("open");
+  header.classList.toggle("open");
 }
 
 function filterSongs() {
-  const q = document.getElementById('searchInput').value.toLowerCase();
-  buildSongs(songs.filter(s => s.title.toLowerCase().includes(q)));
+  const q = document.getElementById("searchInput").value.toLowerCase();
+
+  const filtered = songs.filter(s =>
+    s.title.toLowerCase().includes(q)
+  );
+
+  buildSongs(filtered);
 }
 
 buildSongs(songs);
 </script>
+
 </body>
 </html>
