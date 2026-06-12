@@ -1,314 +1,285 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cancionero – Señor Cautivo de Ayabaca</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cancionero Señor Cautivo</title>
 
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      font-family: Georgia, 'Times New Roman', serif;
-      background: #f5f0e8;
-      color: #2c1a0e;
-      min-height: 100vh;
-      padding: 1rem;
-    }
+body {
+  font-family: Georgia, serif;
+  background: #f5f0e8;
+  color: #2c1a0e;
+  padding: 1rem;
+}
 
-    .page { max-width: 700px; margin: 0 auto; }
+.page { max-width: 800px; margin: auto; }
 
-    .header {
-      text-align: center;
-      padding: 2.5rem 1.5rem 2rem;
-      background: #7a1c1c;
-      color: #fff;
-      border-radius: 12px;
-      margin-bottom: 1.5rem;
-    }
+.header {
+  text-align: center;
+  padding: 2rem;
+  background: #7a1c1c;
+  color: white;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
 
-    .header .cruz { font-size: 28px; margin-bottom: 0.5rem; }
-    .header h1 { font-size: 24px; }
-    .header p { font-size: 14px; opacity: 0.85; }
+.search {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
 
-    .search-wrap { margin-bottom: 1.25rem; position: relative; }
+.song-card {
+  background: white;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
 
-    .search-wrap input {
-      width: 100%;
-      padding: 0.65rem 1rem 0.65rem 2.5rem;
-      border: 1px solid #c9b89a;
-      border-radius: 8px;
-      background: #fff;
-      font-size: 14px;
-      outline: none;
-    }
+.song-header {
+  padding: 12px;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
 
-    .search-icon {
-      position: absolute;
-      left: 0.75rem;
-      top: 50%;
-      transform: translateY(-50%);
-    }
+.num {
+  background: #7a1c1c;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
 
-    .count {
-      font-size: 13px;
-      color: #7a6050;
-      margin-bottom: 1rem;
-    }
+.song-body {
+  display: none;
+  padding: 12px;
+  border-top: 1px solid #eee;
+}
 
-    .song-card {
-      background: #fff;
-      border: 1px solid #d9c9b0;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-      overflow: hidden;
-    }
+.song-body.open { display: block; }
 
-    .song-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 0.9rem 1.25rem;
-      cursor: pointer;
-    }
+.lyric {
+  font-size: 14px;
+  line-height: 1.7;
+}
 
-    .song-num {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: #7a1c1c;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 13px;
-      font-weight: bold;
-    }
+audio {
+  width: 100%;
+  margin-top: 10px;
+}
 
-    .song-title { flex: 1; font-weight: bold; }
-
-    .chevron { transition: 0.2s; }
-
-    .song-header.open .chevron {
-      transform: rotate(180deg);
-    }
-
-    .song-body {
-      display: none;
-      border-top: 1px solid #e8dcc8;
-      padding: 1.25rem 1.5rem;
-    }
-
-    .song-body.open { display: block; }
-
-    .section-label {
-      font-size: 11px;
-      font-weight: bold;
-      color: #7a1c1c;
-      margin: 1rem 0 0.35rem;
-    }
-
-    .lyrics-line {
-      font-size: 14.5px;
-      line-height: 1.8;
-    }
-
-    .bis {
-      font-size: 12px;
-      color: #a08060;
-      font-style: italic;
-    }
-
-    iframe {
-      margin-top: 1rem;
-      border-radius: 10px;
-    }
-
-    .no-video {
-      margin-top: 1rem;
-      padding: 0.8rem;
-      border: 1px dashed #d9c9b0;
-      text-align: center;
-      font-size: 13px;
-      color: #a08060;
-    }
-
-    @media (max-width: 480px) {
-      .header h1 { font-size: 20px; }
-      .lyrics-line { font-size: 14px; }
-    }
-  </style>
+.small {
+  font-size: 12px;
+  color: gray;
+}
+</style>
 </head>
 
 <body>
 
 <div class="page">
 
-  <div class="header">
-    <div class="cruz">✝</div>
-    <h1>Señor Cautivo de Ayabaca</h1>
-    <p>Cancionero devocional</p>
-  </div>
+<div class="header">
+<h1>✝ Cancionero Señor Cautivo ✝</h1>
+</div>
 
-  <div class="search-wrap">
-    <span class="search-icon">🔍</span>
-    <input type="text" id="searchInput" placeholder="Buscar canción..." oninput="filterSongs()" />
-  </div>
+<input class="search" id="search" placeholder="Buscar canción..." oninput="render()"/>
 
-  <p class="count" id="count"></p>
-
-  <div id="songList"></div>
+<div id="list"></div>
 
 </div>
 
 <script>
 
 const songs = [
+
+/* =========================
+   01 - HIMNO
+========================= */
 {
-  num: 55,
-  title: "Peregrino",
-  timestamp: "0:29:07",
-  youtubeUrl: "https://www.youtube.com/watch?v=fMFBgO17BaA&t=1747s",
-  sections: [
-    {
-      label: "Estrofa 1",
-      lines: [
-        "Peregrino que va por el mundo",
-        "buscando el camino de mi señor",
-        "y la angustia de ver a cautivo",
-        "para pedirle su bendición"
-      ],
-      bis: false
-    },
-    {
-      label: "Estrofa 2",
-      lines: [
-        "Peregrino que desde muy lejos",
-        "hemos venido a ver al señor",
-        "cruzando muchos desiertos",
-        "con sus maderos para el señor"
-      ],
-      bis: true
-    },
-    {
-      label: "Estribillo",
-      lines: [
-        "Peregrino porque caminas",
-        "a donde quieres llegar?",
-        "Voy en busca de mi Cautivo",
-        "que lo quiero venerar"
-      ],
-      bis: true
-    },
-    {
-      label: "Estrofa 3",
-      lines: [
-        "Peregrino que alegre viene",
-        "va llegando a mi cautivo",
-        "Peregrino que va llegando",
-        "a la fiesta de mi Cautivo"
-      ],
-      bis: true
-    }
-  ]
+num: 1,
+title: "HIMNO",
+audio: "",
+start: "",
+lyrics: [
+"Jesucristo Cautivo Ayabaca",
+"hoy te aclama con gran devoción.",
+"Tú eres Dios hijo amado del padre",
+"y del hombre eres tú el Salvador.",
+"Peregrinos de un pueblo que marcha",
+"a la patria del cielo hacia Dios."
+]
+},
+
+/* =========================
+   02 - CÁNTALE
+========================= */
+{
+num: 2,
+title: "CÁNTALE",
+audio: "",
+start: "",
+lyrics: [
+"Cántale, cántale, cántale a mi cautivo",
+"Cántale, cántale, cántale al peregrino",
+"Y con las palmas te alabaré",
+"y con mi voz te avivaré"
+]
+},
+
+/* =========================
+   03 - FIESTA DE MI CAUTIVO
+========================= */
+{
+num: 3,
+title: "FIESTA DE MI CAUTIVO",
+audio: "",
+start: "",
+lyrics: [
+"Fiesta de mi cautivo",
+"Fiesta de mi señor",
+"Todos los peregrinos",
+"Te cantan con amor",
+"Ampollas y dolores",
+"Todo soporto yo",
+"Para ver a mi cautivo",
+"Que de fiesta se encuentra hoy"
+]
+},
+
+/* =========================
+   54 - PEREGRINO (COMPLETO)
+========================= */
+{
+num: 54,
+title: "PEREGRINO",
+audio: "",
+start: "",
+lyrics: [
+"Peregrino que va por el mundo",
+"buscando el camino de mi señor",
+"y la angustia de ver a cautivo",
+"para pedirle su bendición",
+"Peregrino que desde muy lejos",
+"hemos venido a ver al señor",
+"cruzando muchos desiertos",
+"con sus maderos para el señor",
+"Peregrino porque caminas",
+"a donde quieres llegar?",
+"Voy en busca de mi Cautivo",
+"que lo quiero venerar",
+"Peregrino que alegre viene",
+"va llegando a mi cautivo",
+"Peregrino que va llegando",
+"a la fiesta de mi Cautivo"
+]
+},
+
+/* =========================
+   55 - SE VA LA HERMANDAD
+========================= */
+{
+num: 55,
+title: "SE VA LA HERMANDAD",
+audio: "",
+start: "",
+lyrics: [
+"Se va, se va la hermandad",
+"se va pero volverá",
+"Las penas que llevo en el alma",
+"es una pena tan cruel",
+"Solo le pido al Cautivo",
+"que no se olvide de mí",
+"Yo sufriré y lloraré",
+"hasta llegar a verte"
+]
+},
+
+/* =========================
+   56 - BELLA NOCHE
+========================= */
+{
+num: 56,
+title: "BELLA NOCHE",
+audio: "",
+start: "",
+lyrics: [
+"Una bella noche yo tuve un sueño",
+"con un ángel donde me decía",
+"que en Ayabaca estabas tú",
+"yo me desperté y caminé hacia ti",
+"y de tus ojitos negritos",
+"yo me enamoré"
+]
 }
+
 ];
 
-function buildSongs(list) {
-  const container = document.getElementById("songList");
-  container.innerHTML = "";
+function render(){
 
-  document.getElementById("count").textContent =
-    list.length + " canciones";
+const q = document.getElementById("search").value.toLowerCase();
+const container = document.getElementById("list");
+container.innerHTML = "";
 
-  list.forEach(song => {
+songs
+.filter(s => s.title.toLowerCase().includes(q))
+.forEach(s => {
 
-    let mediaHtml = "";
+const lyricsHTML = s.lyrics.map(l => `<div class="lyric">${l}</div>`).join("");
 
-    if (song.youtubeUrl) {
+let audioHTML = "";
 
-      const videoId = song.youtubeUrl.split("v=")[1].split("&")[0];
-
-      let startSeconds = 0;
-      if (song.timestamp) {
-        const parts = song.timestamp.split(":").map(Number);
-        if (parts.length === 3) {
-          startSeconds = parts[0]*3600 + parts[1]*60 + parts[2];
-        } else {
-          startSeconds = parts[0]*60 + parts[1];
-        }
-      }
-
-      mediaHtml = `
-        <iframe width="100%" height="250"
-          src="https://www.youtube.com/embed/${videoId}?start=${startSeconds}"
-          frameborder="0"
-          allow="autoplay; encrypted-media"
-          allowfullscreen>
-        </iframe>
-      `;
-    } else {
-      mediaHtml = `<div class="no-video">Sin video disponible</div>`;
-    }
-
-    const sectionsHtml = song.sections.map(s => `
-      <p class="section-label">${s.label}</p>
-      ${s.lines.map(l => `<p class="lyrics-line">${l}</p>`).join("")}
-      ${s.bis ? `<p class="bis">(bis)</p>` : ""}
-    `).join("");
-
-    const card = document.createElement("div");
-    card.className = "song-card";
-
-    card.innerHTML = `
-      <div class="song-header" onclick="toggle(this)">
-        <div class="song-num">${song.num}</div>
-        <div class="song-title">${song.title}</div>
-        <div class="chevron">▾</div>
-      </div>
-
-      <div class="song-body">
-        ${sectionsHtml}
-        ${mediaHtml}
-      </div>
-    `;
-
-    container.appendChild(card);
-  });
+if(s.audio){
+audioHTML = `
+<audio controls>
+<source src="${s.audio}" type="audio/mpeg">
+</audio>
+<p class="small">Inicio: ${s.start || "0:00"}</p>
+`;
+} else {
+audioHTML = `<p class="small">🎵 Agrega audio luego</p>`;
 }
 
-function toggle(header) {
-  const body = header.nextElementSibling;
+const card = document.createElement("div");
+card.className = "song-card";
 
-  const allBodies = document.querySelectorAll(".song-body");
-  const allHeaders = document.querySelectorAll(".song-header");
+card.innerHTML = `
+<div class="song-header" onclick="toggle(this)">
+<div class="num">${s.num}</div>
+<div>${s.title}</div>
+</div>
 
-  // 🔥 PAUSAR TODOS los videos al cerrar
-  allBodies.forEach(b => {
-    const iframe = b.querySelector("iframe");
-    if (iframe) {
-      iframe.src = iframe.src; // reinicia (pausa)
-    }
-    b.classList.remove("open");
-  });
+<div class="song-body">
+${lyricsHTML}
+${audioHTML}
+</div>
+`;
 
-  allHeaders.forEach(h => h.classList.remove("open"));
+container.appendChild(card);
 
-  body.classList.add("open");
-  header.classList.add("open");
+});
+
 }
 
-function filterSongs() {
-  const q = document.getElementById("searchInput").value.toLowerCase();
-
-  const filtered = songs.filter(s =>
-    s.title.toLowerCase().includes(q)
-  );
-
-  buildSongs(filtered);
+function toggle(el){
+const body = el.nextElementSibling;
+document.querySelectorAll(".song-body").forEach(b => b.classList.remove("open"));
+body.classList.toggle("open");
 }
 
-buildSongs(songs);
+render();
 
 </script>
 
