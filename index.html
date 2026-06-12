@@ -162,6 +162,7 @@
 </div>
 
 <script>
+
 const songs = [
 {
   num: 55,
@@ -279,11 +280,22 @@ function buildSongs(list) {
 function toggle(header) {
   const body = header.nextElementSibling;
 
-  document.querySelectorAll(".song-body").forEach(b => b.classList.remove("open"));
-  document.querySelectorAll(".song-header").forEach(h => h.classList.remove("open"));
+  const allBodies = document.querySelectorAll(".song-body");
+  const allHeaders = document.querySelectorAll(".song-header");
 
-  body.classList.toggle("open");
-  header.classList.toggle("open");
+  // 🔥 PAUSAR TODOS los videos al cerrar
+  allBodies.forEach(b => {
+    const iframe = b.querySelector("iframe");
+    if (iframe) {
+      iframe.src = iframe.src; // reinicia (pausa)
+    }
+    b.classList.remove("open");
+  });
+
+  allHeaders.forEach(h => h.classList.remove("open"));
+
+  body.classList.add("open");
+  header.classList.add("open");
 }
 
 function filterSongs() {
@@ -297,6 +309,7 @@ function filterSongs() {
 }
 
 buildSongs(songs);
+
 </script>
 
 </body>
