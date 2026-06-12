@@ -163,24 +163,54 @@
 
 <script>
 const songs = [
-  {
-    num: 55,
-    title: "Peregrino",
-    timestamp: "0:29:07",
-    youtubeUrl: "https://www.youtube.com/watch?v=fMFBgO17BaA&t=1747s",
-    sections: [
-      { label: "Estrofa 1", lines: ["Peregrino que va por el mundo","buscando el camino del Señor"], bis: true }
-    ]
-  },
-  {
-    num: 56,
-    title: "Se va la hermandad",
-    timestamp: "0:54:56",
-    youtubeUrl: "https://www.youtube.com/watch?v=fMFBgO17BaA&t=3296s",
-    sections: [
-      { label: "Estrofa 1", lines: ["Se va, se va la hermandad","pero volverá"], bis: true }
-    ]
-  }
+{
+  num: 55,
+  title: "Peregrino",
+  timestamp: "0:29:07",
+  youtubeUrl: "https://www.youtube.com/watch?v=fMFBgO17BaA&t=1747s",
+  sections: [
+    {
+      label: "Estrofa 1",
+      lines: [
+        "Peregrino que va por el mundo",
+        "buscando el camino de mi señor",
+        "y la angustia de ver a cautivo",
+        "para pedirle su bendición"
+      ],
+      bis: false
+    },
+    {
+      label: "Estrofa 2",
+      lines: [
+        "Peregrino que desde muy lejos",
+        "hemos venido a ver al señor",
+        "cruzando muchos desiertos",
+        "con sus maderos para el señor"
+      ],
+      bis: true
+    },
+    {
+      label: "Estribillo",
+      lines: [
+        "Peregrino porque caminas",
+        "a donde quieres llegar?",
+        "Voy en busca de mi Cautivo",
+        "que lo quiero venerar"
+      ],
+      bis: true
+    },
+    {
+      label: "Estrofa 3",
+      lines: [
+        "Peregrino que alegre viene",
+        "va llegando a mi cautivo",
+        "Peregrino que va llegando",
+        "a la fiesta de mi Cautivo"
+      ],
+      bis: true
+    }
+  ]
+}
 ];
 
 function buildSongs(list) {
