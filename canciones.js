@@ -3,7 +3,7 @@ const canciones = [
     "numero": "01",
     "titulo": "HIMNO",
     "letra": "Jesucristo Cautivo Ayabaca \nhoy te aclama con gran devoción. \nTú eres Dios hijo amado del padre \ny del hombre eres tú El Salvador. \nTu eres dios \nHijo amado del padre \nY del hombre \nEres tu el salvador \nPeregrinos de un pueblo que marcha \na la patria del cielo hacia Dios. \nEl amor será el lema que guíe \nnuestro anhelo de liberación. \nUna tierra más justa queremos \ncon trabajo con paz con amor. \nPara hacernos un mundo más bello \ndonde todos vivamos mejor. \nNuestra fe inquebrantable en María, \nsu Pilar y modelo encontró. \nPara estar al servicio como ella \nque la \"esclava de Dios\" se llamó.",
-    "youtube": "",
+    "youtube": "https://www.youtube.com/watch?v=J6hImwgud4Y&list=PLy_CI_LN48DUvOmakPBOIfz0AojZ7aVB6&index=13",
     "inicio": 0
   },
   {
